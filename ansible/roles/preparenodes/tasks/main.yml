@@ -13,7 +13,7 @@
     - modprobe overlay
     - modprobe br_netfilter
 
-- name: Add sysctl settings
+- name: Enable Bridging Add sysctl settings
   copy:
     dest: /etc/sysctl.d/kubernetes.conf
     content: |
