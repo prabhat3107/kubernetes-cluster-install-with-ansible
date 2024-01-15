@@ -35,7 +35,7 @@ variable "vcneter_user_password" {
 variable "resource_pool_name" {
     description = "Name of the Vsphere resource pool"
     type = string
-    default = "esxi-1.sriauronet.local/Resources"
+    default = "10.10.1.11/Resources"
   
 }
 
@@ -66,26 +66,26 @@ variable "vsphere_datastore_name" {
 variable "vm_network_name_1" {
     description = "Name of the devfault virtual vsphere network"
     type = string
-    default = "VMNet-G1"
+    default = "ExternetlNet"
 }
 
 variable "vm_network_name_2" {
     description = "Name of the devfault virtual vsphere network"
     type = string
-    default = "VMNet-G2"
+    default = "VMNet-G1"
 }
 
 variable "vm_network_name_3" {
     description = "Name of the devfault virtual vsphere network"
     type = string
-    default = "VMNet-G3"
+    default = "VMNet-G2"
 }
 
 
 variable "vm_network_name_4" {
     description = "Name of the devfault virtual vsphere network"
     type = string
-    default = "ExternetlNet"
+    default = "VMNet-G3"
 }
 
 variable "vm_template_name" {

@@ -7,15 +7,15 @@ vcenter_user_name = "administrator@sriauronet.local"
 
 vcneter_user_password = "Beauty!123"
 
-resource_pool_name = "esxi-1.sriauronet.local/Resources"
+resource_pool_name = "10.10.1.11/Resources"
 
 vsphere_datastore_name =  "datastore2"
 
 
-vm_network_name_1 = "VMNet-G1"
-vm_network_name_2 = "VMNet-G2"
-vm_network_name_3 = "VMNet-G3"
-vm_network_name_4 = "ExternetlNet"
+vm_network_name_1 = "ExternetlNet"
+vm_network_name_2 = "VMNet-G1"
+vm_network_name_3 = "VMNet-G2"
+vm_network_name_4 = "VMNet-G3"
 vm_template_name = "userver-22.04-lts-template"
 
 
@@ -25,12 +25,12 @@ project_folder_name="MultiNode-Lab1"
 vm_user_name = "prabhat"
 vm_user_password = "Beauty!123"
 
-vm_domain_name = "sriauronet.local"
+vm_domain_name = "sriauronet.lan"
 
 vm_ipv4_netmask = 24
-dns_server_list = ["10.1.1.1"]
-dns_suffix_list = ["sriauronet.local"]
-vm_ipv4_gateway = "10.1.1.1"
+dns_server_list = ["10.10.1.1"]
+dns_suffix_list = ["sriauronet.lan"]
+vm_ipv4_gateway = "10.10.1.1"
 
 
 vm_ipv4_gateway_2 = "10.10.1.1"
@@ -43,7 +43,7 @@ vm_list = [
         vm_memory = 8192
         vm_nic_config = [
                 {
-                    ipv4_address = "10.1.1.121"
+                    ipv4_address = "10.10.1.121"
                     ipv4_netmask = 24
                 },
                 {
@@ -64,7 +64,7 @@ vm_list = [
         vm_memory = 8192
         vm_nic_config = [
                 {
-                    ipv4_address = "10.1.1.122"
+                    ipv4_address = "10.10.1.122"
                     ipv4_netmask = 24
                 },
                 {
@@ -86,7 +86,7 @@ vm_list = [
         vm_memory = 4096
         vm_nic_config = [
                 {
-                    ipv4_address = "10.1.1.131"
+                    ipv4_address = "10.10.1.131"
                     ipv4_netmask = 24
                 },
                 {
@@ -107,7 +107,7 @@ vm_list = [
         vm_memory = 4096
         vm_nic_config = [
                 {
-                    ipv4_address = "10.1.1.132"
+                    ipv4_address = "10.10.1.132"
                     ipv4_netmask = 24
                 },
                 {
@@ -128,7 +128,7 @@ vm_list = [
         vm_memory = 4096
         vm_nic_config = [
                 {
-                    ipv4_address = "10.1.1.133"
+                    ipv4_address = "10.10.1.133"
                     ipv4_netmask = 24
                 },
                 {
@@ -149,7 +149,7 @@ vm_list = [
         vm_memory = 4096
         vm_nic_config = [
                 {
-                    ipv4_address = "10.1.1.134"
+                    ipv4_address = "10.10.1.134"
                     ipv4_netmask = 24
                 },
                 {
@@ -170,7 +170,7 @@ vm_list = [
         vm_memory = 4096
         vm_nic_config = [
                 {
-                    ipv4_address = "10.1.1.135"
+                    ipv4_address = "10.10.1.135"
                     ipv4_netmask = 24
                 },
                 {
