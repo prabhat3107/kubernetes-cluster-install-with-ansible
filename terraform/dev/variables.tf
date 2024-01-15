@@ -10,7 +10,7 @@ variable "vcenter_host_name" {
 
     description = "Host name of the Vcenter host"
     type = string
-    default = "vcenter1.sriauronet.local"
+    default = "vcenter1.sriauronet.lan"
   
 }
 

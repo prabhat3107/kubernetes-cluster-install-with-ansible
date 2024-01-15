@@ -1,7 +1,7 @@
 
 dc_name = "SriAuronetHDC1"
 
-vcenter_host_name = "vcenter1.sriauronet.local"
+vcenter_host_name = "vcenter1.sriauronet.lan"
 
 vcenter_user_name = "administrator@sriauronet.local"
 
