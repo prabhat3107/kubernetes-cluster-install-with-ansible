@@ -153,12 +153,15 @@
 
 - name: Get Kubernetes repo gpg key
   get_url: 
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    dest: /usr/share/keyrings/kubernetes-archive-keyring.gpg
+    url: https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key
+    dest: /tmp/Release.key
+
+- name: Make gpg key ansible.builtin.apt_repository
+  command: "gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/Release.key"
 
 - name: Install Kubernetes repo
   ansible.builtin.apt_repository: 
-    repo: "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main"
+    repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /"
     state: present
     
 - name: Install kubernetes packages 
