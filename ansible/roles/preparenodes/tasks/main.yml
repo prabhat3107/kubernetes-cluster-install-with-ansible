@@ -24,7 +24,7 @@
 - name: Apply sysctl changes 
   command: sysctl --system    
 
-
+#curl gnupg2 software-properties-common apt-transport-https ca-certificates
 - name: Preapre for Kubernetes and Docker installation 
   ansible.builtin.apt:
     update_cache: yes
@@ -40,7 +40,9 @@
       - vim
     state: present
 
-- name: Iinstale Docker official gpg key
+#
+
+- name: Install Docker official gpg key
   get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
     dest: /etc/apt/trusted.gpg.d/docker.asc
@@ -150,15 +152,24 @@
     - modprobe overlay
     - modprobe br_netfilter
 
+#curl -fsSL  https://packages.cloud.google.com/apt/doc/apt-key.gpg|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/k8s.gpg
+#echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 - name: Get Kubernetes repo gpg key
   get_url: 
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    dest: /usr/share/keyrings/kubernetes-archive-keyring.gpg
+    url: https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key
+    dest: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+- name: Install kumbernets repo gpg key
+  ansible.builtin.apt_key:
+    file: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    keyserver: keyserver.ubuntu.com
+    id: 234654DA9A296436
+    state: present
 
 - name: Install Kubernetes repo
   ansible.builtin.apt_repository: 
-    repo: "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main"
+    repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /"
     state: present
     
 - name: Install kubernetes packages 
