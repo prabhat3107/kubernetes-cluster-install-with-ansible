@@ -151,37 +151,36 @@
     - modprobe br_netfilter
 
 
-##- name: Get Kubernetes repo gpg key
-##  get_url: 
-##    url: https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key
-##    dest: /tmp/Release.key
-#
-##- name: Make gpg key ansible.builtin.apt_repository
-#  command: "gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/Release.key"
-#
-##- name: Install Kubernetes repo
-#  ansible.builtin.apt_repository: 
-#    repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /"
-#    state: present
-#    
-#- name: Install kubernetes packages 
-#  ansible.builtin.apt:
-#    update_cache: yes
-#    pkg: 
-#      - kubelet
-#      - kubeadm
-#      - kubectl
-#    state: present
-#
-#- name: Enable service kubelet persistently
-#  service: 
-#    name: kubelet
-#    enabled: yes
-#
-#- name: Reboot all the kubernetes nodes
-#  reboot: 
-#    post_reboot_delay: 10
-#    reboot_timeout: 90
-#    connect_timeout: 120
-#    test_command: uptime
-#
+- name: Get Kubernetes repo gpg key
+  get_url: 
+    url: https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key
+    dest: /tmp/Release.key
+
+- name: Make gpg key ansible.builtin.apt_repository
+  command: "gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/Release.key"
+
+- name: Install Kubernetes repo
+  ansible.builtin.apt_repository: 
+    repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /"
+    state: present
+    
+- name: Install kubernetes packages 
+  ansible.builtin.apt:
+    update_cache: yes
+    pkg: 
+      - kubelet
+      - kubeadm
+      - kubectl
+    state: present
+
+- name: Enable service kubelet persistently
+  service: 
+    name: kubelet
+    enabled: yes
+
+- name: Reboot all the kubernetes nodes
+  reboot: 
+    post_reboot_delay: 10
+    reboot_timeout: 90
+    connect_timeout: 120
+    test_command: uptime
