@@ -9,8 +9,8 @@
   roles:
     - role: master1
 
-- name: Enrole worker nodes
-  hosts: workers
+#- name: Enrole worker nodes
+#  hosts: workers
 
-  roles:
-    - role: workers
+#  roles:
+#    - role: workers
