@@ -13,6 +13,18 @@
     - modprobe overlay
     - modprobe br_netfilter
 
+- name: Configure Persistent loading of moduels
+  copy: 
+    dest: /etc/modules-load.d/k8s.conf
+    content: |
+      overlay
+      br_netfilter
+- name: Enable kernel moduels
+  command: "{{ item }}"
+  with_items:
+    - modprobe overlay
+    - modprobe br_netfilter
+
 - name: Enable Bridging Add sysctl settings
   copy:
     dest: /etc/sysctl.d/kubernetes.conf
