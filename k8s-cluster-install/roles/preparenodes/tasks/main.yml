@@ -88,7 +88,7 @@
   systemd:
     name: docker
     state: restarted
-    daemon_reload: true
+    daemon_reload: yes
     enable: true
 
 - name: Find latest versioin for  cri-dockerd 
