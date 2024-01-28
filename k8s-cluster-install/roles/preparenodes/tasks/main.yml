@@ -85,7 +85,7 @@
       }
 
 - name: Enable docker service 
-  systemd_service:
+  systemd:
     name: docker
     state: restarted
     daemon_reload: true
@@ -139,7 +139,7 @@
     replace: '/usr/local/bin/cri-dockerd'
 
 - name: enable cri-docker services 
-  systemd_service:
+  systemd:
     daemon_reload: yes
     enabled: yes
     name: "{{ item }}"
@@ -148,7 +148,7 @@
     - cri-docker.socket
 
 - name: Start  cri-docker.socket services 
-  systemd_service:
+  systemd:
     daemon_reload: yes
     state: started
     name: cri-docker.socket
