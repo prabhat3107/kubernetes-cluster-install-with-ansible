@@ -89,7 +89,7 @@
     name: docker
     state: restarted
     daemon_reload: yes
-    enable: true
+    enable: yes
 
 - name: Find latest versioin for  cri-dockerd 
   uri:
