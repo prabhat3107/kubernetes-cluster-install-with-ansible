@@ -1,0 +1,27 @@
+- name: Swap off
+  command: swapoff -a
+
+- name: Remove Swap entry from /etc/fstab
+  lineinfile:
+    dest: /etc/fstab
+    regexp: swap
+    state: absent
+
+- name: Enable kernel modules 
+  command: "{{ item }}"
+  with_items: 
+    - modprobe overlay
+    - modprobe br_netfilter
+
+- name: Enable bridging and sysctl settings
+  ansible.posix.sysctl:
+    name: "{{ item }}"
+    value: '1'
+    sysctl_set: true
+    sysctl_file: /etc/sysctl.d/kubernetes.conf
+    reload: true
+  with_items: 
+    - net.bridge.bridge-nf-call-iptables
+    - net.bridge.bridge-nf-call-ipv6tables
+    - net.ipv4.ip_forward
+  
