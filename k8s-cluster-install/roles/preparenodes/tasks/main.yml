@@ -139,7 +139,7 @@
     replace: '/usr/local/bin/cri-dockerd'
 
 - name: enable cri-docker services 
-  ansible.builtin.systemd_service:
+  systemd_service:
     daemon_reload: yes
     enabled: yes
     name: "{{ item }}"
@@ -148,7 +148,7 @@
     - cri-docker.socket
 
 - name: Start  cri-docker.socket services 
-  ansible.builtin.systemd_service:
+  systemd_service:
     daemon_reload: yes
     state: started
     name: cri-docker.socket
