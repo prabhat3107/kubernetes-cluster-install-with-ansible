@@ -19,7 +19,7 @@
     value: '1'
     sysctl_set: true
     sysctl_file: /etc/sysctl.d/kubernetes.conf
-    reload: true
+    
   with_items: 
     - net.bridge.bridge-nf-call-iptables
     - net.bridge.bridge-nf-call-ipv6tables
