@@ -35,15 +35,15 @@ resource "vsphere_virtual_machine" "vm" {
   guest_id                          = var.template_guest_id
   scsi_type                        = var.template_scsi_type
   firmware                          = var.template_firmware 
-dynamic network_interface {
+  dynamic network_interface {
 
-  for_each = [ for nic in local.nic_list: nic ]
-  content {
-    network_id = network_interface.value.network_id
-    adapter_type = network_interface.value.adapter_type
+    for_each = [ for nic in local.nic_list: nic ]
+    content {
+      network_id = network_interface.value.network_id
+      adapter_type = network_interface.value.adapter_type
+    }
+    
   }
-  
-}
 
   disk {
     label = "${var.disk_label}"
