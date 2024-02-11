@@ -1,0 +1,122 @@
+- name: Swapp off 
+  command: swapoff -a
+
+- name: Remove Swap entry from /etc/fstab
+  lineinfile:
+    dest: /etc/fstab
+    regexp: swap
+    state: absent
+
+- name: Disable SELINUX
+  ansible.posix.selinux:
+    state: disabled
+
+- name: Enable overley and br_netfilter  kernel moduels
+  community.general.modprobe: 
+    name: "{{ item }}"
+    state: present
+    persistent: present
+  with_items:
+    - overlay
+    - br_netfilter
+
+- name: Add IP address of all hosts to all hosts
+  blockinfile:
+    backup: yes
+    path: /etc/hosts
+    block: |
+      10.10.1.51 k8s-cos9-master1.sriauronet.lan k8s-cos9-master1
+      10.10.1.52 k8s-cos9-master2.sriauronet.lan k8s-cos9-master2
+      10.10.1.53 k8s-cos9-wn1.sriauronet.lan k8s-cos9-wn1
+      10.10.1.54 k8s-cos9-wn2.sriauronet.lan k8s-cos9-wn2
+      10.10.1.55 k8s-cos9-wn3.sriauronet.lan k8s-cos9-wn3
+      10.10.1.56 k8s-cos9-wn4.sriauronet.lan k8s-cos9-wn4
+      10.10.1.57 k8s-cos9-wn5.sriauronet.lan k8s-cos9-wn5
+
+- name: Enable Bridging Add sysctl settings
+  ansible.posix.sysctl:
+    name: "{{ item }}"
+    value: '1'
+    sysctl_file: /etc/sysctl.d/kubernetes.conf
+    sysctl_set: true
+    reload: true
+  with_items:
+    - net.bridge.bridge-nf-call-ip6tables
+    - net.bridge.bridge-nf-call-iptables
+    - net.ipv4.ip_forward 
+
+
+- name: Install IProute-tc package
+  ansible.builtin.dnf:
+    name: iproute-tc
+    state: present
+
+
+- name: Install CRI-O lib containers repo
+  ansible.builtin.yum_repository: 
+    name: devel_kubic_libcontainers_stable
+    description: Stable Releases of Upstream github.com/containers packages (CentOS_8)
+    baseurl: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_8/
+    gpgcheck: true
+    gpgkey: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_8/repodata/repomd.xml.key
+    state: present
+ 
+
+- name: Install CRI-O (version 1.26) repo  
+  ansible.builtin.yum_repository:
+    name: devel_kubic_libcontainers_stable_cri-o_1.26
+    description: devel:kubic:libcontainers:stable:cri-o:1.26 (CentOS_8)
+    baseurl: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.26/CentOS_8/
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.26/CentOS_8/repodata/repomd.xml.key
+    state: present 
+
+
+- name: Install crio package
+  ansible.builtin.dnf:
+    name: cri-o
+    state: present
+
+
+- name: Install Kubernetes repo (version 1.29.1)  
+  ansible.builtin.yum_repository:
+    name: kubernetes
+    description: kubernetes 1.29 repo
+    baseurl: https://pkgs.k8s.io/core:/stable:/v1.29/rpm/
+    enabled: true
+    state: present 
+    gpgcheck: true
+    gpgkey: https://pkgs.k8s.io/core:/stable:/v1.29/rpm/repodata/repomd.xml.key
+    exclude: 
+      - kubelet 
+      - kubeadm 
+      - kubectl 
+      - cri-tools 
+      - kubernetes-cni
+
+
+
+- name: Install kubernetes packages 
+  ansible.builtin.dnf:
+    name: 
+      - kubelet
+      - kubeadm
+      - kubectl
+    state: present
+    disable_excludes: kubernetes
+
+- name: Enable service kubelet persistently
+  ansible.builtin.systemd_service: 
+    name: "{{ item }}"
+    enabled: yes
+  with_items: 
+    - crio
+    - kubelet
+
+- name: Reboot all the kubernetes nodes
+  reboot: 
+    post_reboot_delay: 10
+    reboot_timeout: 90
+    connect_timeout: 120
+    test_command: uptime
