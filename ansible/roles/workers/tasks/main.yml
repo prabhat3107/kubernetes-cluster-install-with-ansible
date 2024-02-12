@@ -1,5 +1,5 @@
 - name: join cluster
-  shell: "{{ hostvars['k8s-master1.sriauronet.local'].join_command }} >> node_joined.txt"
+  shell: "{{ hostvars['k8s-master1.sriauronet.lan'].join_command }} >> node_joined.txt"
   args:
     chdir: $HOME
     creates: node_joined.txt
