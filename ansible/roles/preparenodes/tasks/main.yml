@@ -11,7 +11,7 @@
   community.general.modprobe: 
     name: "{{ item }}"
     state: present
-    persistent: true
+    persistent: present
   with_items:
     - overlay
     - br_netfilter
