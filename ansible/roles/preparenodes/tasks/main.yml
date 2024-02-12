@@ -7,14 +7,18 @@
     regexp: swap
     state: absent
 
-- name: Enable overley and br_netfilter  kernel moduels
-  community.general.modprobe: 
-    name: "{{ item }}"
-    state: present
-    persistent: present
+- name: Enable kernel moduels
+  command: "{{ item }}"
   with_items:
-    - overlay
-    - br_netfilter
+    - modprobe overlay
+    - modprobe br_netfilter
+
+- name: Configure Persistent loading of moduels
+  copy: 
+    dest: /etc/modules-load.d/k8s.conf
+    content: |
+      overlay
+      br_netfilter
 
 - name: Enable Bridging ipv4 Frowarding - Add sysctl settings
   ansible.posix.sysctl:
@@ -159,19 +163,6 @@
   with_items:
     - cri-docker.service
     - cri-docker.socket
-
-- name: Configure Persistent loading of moduels
-  copy: 
-    dest: /etc/modules-load.d/k8s.conf
-    content: |
-      overlay
-      br_netfilter
-#- name: Enable kernel moduels
-#  command: "{{ item }}"
-#  with_items:
-#    - modprobe overlay
-#    - modprobe br_netfilter
-
 
 - name: Get Kubernetes repo gpg key
   get_url: 
