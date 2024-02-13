@@ -38,7 +38,7 @@ vm_ipv4_gateway_2 = "10.10.1.1"
 vm_list = [
     {
         vm_name = "k8s-cos9-master1"
-        vm_host_name = "k8s-cos9-master1"
+        vm_host_name = "k8s-cos9-master1.sriauronet.lan"
         vm_num_cpus = 4
         vm_memory = 8192
         vm_nic_config = [
@@ -59,7 +59,7 @@ vm_list = [
     },
         {
         vm_name = "k8s-cos9-master2"
-        vm_host_name = "k8s-cos9-master2"
+        vm_host_name = "k8s-cos9-master2.sriauronet.lan"
         vm_num_cpus = 4
         vm_memory = 8192
         vm_nic_config = [
@@ -81,7 +81,7 @@ vm_list = [
 
     {
         vm_name = "k8s-cos9-wn1"
-        vm_host_name = "k8s-cos9-wn1"
+        vm_host_name = "k8s-cos9-wn1.sriauronet.lan"
         vm_num_cpus = 2
         vm_memory = 4096
         vm_nic_config = [
@@ -102,7 +102,7 @@ vm_list = [
     },
     {
         vm_name = "k8s-cos9-wn2"
-        vm_host_name = "k8s-cos9-wn2"
+        vm_host_name = "k8s-cos9-wn2.sriauronet.lan"
         vm_num_cpus = 2
         vm_memory = 4096
         vm_nic_config = [
@@ -123,7 +123,7 @@ vm_list = [
     },
     {
         vm_name = "k8s-cos9-wn3"
-        vm_host_name = "k8s-cos9-wn3"
+        vm_host_name = "k8s-cos9-wn3.sriauronet.lan"
         vm_num_cpus = 2
         vm_memory = 4096
         vm_nic_config = [
@@ -144,7 +144,7 @@ vm_list = [
     },
     {
         vm_name = "k8s-cos9-wn4"
-        vm_host_name = "k8s-cos9-wn4"
+        vm_host_name = "k8s-cos9-wn4.sriauronet.lan"
         vm_num_cpus = 2
         vm_memory = 4096
         vm_nic_config = [
@@ -165,7 +165,7 @@ vm_list = [
     },
     {
         vm_name = "k8s-cos9-wn5"
-        vm_host_name = "k8s-cos9-wn5"
+        vm_host_name = "k8s-cos9-wn5.sriauronet.lan"
         vm_num_cpus = 2
         vm_memory = 4096
         vm_nic_config = [
@@ -192,6 +192,5 @@ network_node_vm_list = [
   ]
 
 provisioning_commands = [
-      "sudo apt update -y",
-      "sudo apt upgrade -y"
+     "sudo dnf update -y"
     ]
