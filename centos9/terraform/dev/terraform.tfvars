@@ -192,5 +192,6 @@ network_node_vm_list = [
   ]
 
 provisioning_commands = [
-     "sudo dnf update -y"
+      "sudo apt update -y",
+      "sudo apt upgrade -y"
     ]

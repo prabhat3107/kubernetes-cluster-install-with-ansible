@@ -13,12 +13,12 @@ terraform {
 #    path = var.parent_project_folder_name
 #    type = "vm"
 #    datacenter_id = var.vsphere_datacenter_id
-  
+#  
 #}
 
 resource "vsphere_folder" "project_folder" {
 
-    path = "${var.parent_project_folder_name}/${var.project_folder_name}"
+    path = "${var.parent_project_folder_name}}/${var.project_folder_name}"
     type = "vm"
     datacenter_id = var.vsphere_datacenter_id
   
