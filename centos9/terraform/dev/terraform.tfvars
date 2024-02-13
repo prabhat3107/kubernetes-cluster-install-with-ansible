@@ -53,7 +53,7 @@ vm_list = [
                 {
                     ipv4_address = "10.1.3.51"
                     ipv4_netmask = 24
-                },
+                }
             ]
 
     },
@@ -74,7 +74,7 @@ vm_list = [
                 {
                     ipv4_address = "10.1.3.52"
                     ipv4_netmask = 24
-                },
+                }
             ]
 
     },
@@ -96,7 +96,7 @@ vm_list = [
                 {
                     ipv4_address = "10.1.3.53"
                     ipv4_netmask = 24
-                },
+                }
             ]
  
     },
@@ -117,7 +117,7 @@ vm_list = [
                 {
                     ipv4_address = "10.1.3.54"
                     ipv4_netmask = 24
-                },
+                }
             ]
  
     },
@@ -138,7 +138,7 @@ vm_list = [
                 {
                     ipv4_address = "10.1.3.55"
                     ipv4_netmask = 24
-                },
+                }
             ]
  
     },
@@ -159,7 +159,7 @@ vm_list = [
                 {
                     ipv4_address = "10.1.3.56"
                     ipv4_netmask = 24
-                },
+                }
             ]
  
     },
@@ -180,7 +180,7 @@ vm_list = [
                 {
                     ipv4_address = "10.1.3.57"
                     ipv4_netmask = 24
-                },
+                }
             ]
  
     }
