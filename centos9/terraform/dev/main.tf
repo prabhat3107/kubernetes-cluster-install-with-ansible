@@ -89,7 +89,7 @@ module "create_vms" {
   template_guest_id = data.vsphere_virtual_machine.vm_template.guest_id
   template_firmware = data.vsphere_virtual_machine.vm_template.firmware
   template_scsi_type = data.vsphere_virtual_machine.vm_template.scsi_type
- 
+
   vm_template_id   = data.vsphere_virtual_machine.vm_template.id
   vm_nic1_network_id       = data.vsphere_network.vm_network_1.id
   vm_nic2_network_id       = data.vsphere_network.vm_network_2.id
@@ -106,8 +106,6 @@ module "create_vms" {
   vm_ipv4_gateway  = var.vm_ipv4_gateway
   vm_user_name =  var.vm_user_name
   vm_user_password = var.vm_user_password
-  provisioning_commands = var.provisioning_commands
-
+  #provisioning_commands = var.provisioning_commands
 
 }
-

@@ -81,9 +81,9 @@ resource "vsphere_virtual_machine" "vm" {
     password = var.vm_user_password
     host = vsphere_virtual_machine.vm.default_ip_address
   }
-  provisioner "remote-exec" {
+  #provisioner "remote-exec" {
 
-    inline = var.provisioning_commands
+  #  inline = var.provisioning_commands
 
-  }
+  #}
 }
