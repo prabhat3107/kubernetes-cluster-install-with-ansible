@@ -107,7 +107,7 @@
     disable_excludes: kubernetes
 
 - name: Enable service kubelet persistently
-  systemd_service: 
+  systemd: 
     name: "{{ item }}"
     enabled: yes
   with_items: 
