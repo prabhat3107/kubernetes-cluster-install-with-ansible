@@ -25,13 +25,13 @@
     backup: yes
     path: /etc/hosts
     block: |
-      10.10.1.51 k8s-cos9-master1.sriauronet.lan k8s-cos9-master1
-      10.10.1.52 k8s-cos9-master2.sriauronet.lan k8s-cos9-master2
-      10.10.1.53 k8s-cos9-wn1.sriauronet.lan k8s-cos9-wn1
-      10.10.1.54 k8s-cos9-wn2.sriauronet.lan k8s-cos9-wn2
-      10.10.1.55 k8s-cos9-wn3.sriauronet.lan k8s-cos9-wn3
-      10.10.1.56 k8s-cos9-wn4.sriauronet.lan k8s-cos9-wn4
-      10.10.1.57 k8s-cos9-wn5.sriauronet.lan k8s-cos9-wn5
+      10.10.1.51 k8s-cos8-master1.sriauronet.lan k8s-cos8-master1
+      10.10.1.52 k8s-cos8-master2.sriauronet.lan k8s-cos8-master2
+      10.10.1.53 k8s-cos8-wn1.sriauronet.lan k8s-cos8-wn1
+      10.10.1.54 k8s-cos8-wn2.sriauronet.lan k8s-cos8-wn2
+      10.10.1.55 k8s-cos8-wn3.sriauronet.lan k8s-cos8-wn3
+      10.10.1.56 k8s-cos8-wn4.sriauronet.lan k8s-cos8-wn4
+      10.10.1.57 k8s-cos8-wn5.sriauronet.lan k8s-cos8-wn5
 
 - name: Enable Bridging Add sysctl settings
   ansible.posix.sysctl:
