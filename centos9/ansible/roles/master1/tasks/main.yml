@@ -1,3 +1,17 @@
+- name: open firewall for master nodes
+  firewalld:
+    port: "{{ item }}/tcp"
+    state: enabled
+    immediate: true
+    permanent: true
+  with_items: 
+    - 6443
+    - 2379-2380
+    - 10250
+    - 10251
+    - 10252
+
+
 - name: start kubelet service
   systemd: 
     name: kubelet

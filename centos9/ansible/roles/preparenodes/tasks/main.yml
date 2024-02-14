@@ -19,6 +19,13 @@
     - overlay
     - br_netfilter
 
+- name: Configure Persistent loading of moduels
+  copy: 
+    dest: /etc/modules-load.d/k8s.conf
+    content: |
+      overlay
+      br_netfilter
+
 - name: Add IP address of all hosts to all hosts
   blockinfile:
     backup: yes
