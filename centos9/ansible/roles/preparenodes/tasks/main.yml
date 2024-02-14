@@ -107,7 +107,7 @@
     disable_excludes: kubernetes
 
 - name: Enable service kubelet persistently
-  ansible.builtin.systemd_service: 
+  systemd_service: 
     name: "{{ item }}"
     enabled: yes
   with_items: 
