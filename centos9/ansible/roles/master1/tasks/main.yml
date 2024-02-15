@@ -1,3 +1,17 @@
+- name: open firewall for master nodes
+  firewalld:
+    port: "{{ item }}/tcp"
+    state: enabled
+    immediate: true
+    permanent: true
+  with_items: 
+    - 6443
+    - 2379-2380
+    - 10250
+    - 10251
+    - 10252
+
+
 - name: start kubelet service
   systemd: 
     name: kubelet
@@ -43,4 +57,4 @@
 
 - name: set join command
   set_fact:
-    join_command: "{{ join_command_raw.stdout_lines[0] }} --cri-socket {{ cri_socket }}" 
+    join_command: "{{ join_command_raw.stdout_lines[0] }}" 

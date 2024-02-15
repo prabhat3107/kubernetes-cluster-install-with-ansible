@@ -1,5 +1,15 @@
+- name: open firewall for master nodes
+  firewalld:
+    port: "{{ item }}/tcp"
+    state: enabled
+    immediate: true
+    permanent: true
+  with_items: 
+    - 10250
+    - 30000-32767
+
 - name: join cluster
-  shell: "{{ hostvars['k8s-master1.sriauronet.local'].join_command }} >> node_joined.txt"
+  shell: "{{ hostvars['k8s-cos9-master1.sriauronet.lan'].join_command }} >> node_joined.txt"
   args:
     chdir: $HOME
     creates: node_joined.txt

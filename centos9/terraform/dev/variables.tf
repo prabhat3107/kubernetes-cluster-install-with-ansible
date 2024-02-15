@@ -210,10 +210,10 @@ variable "vm_user_password" {
   
 }
 
-variable "provisioning_commands" {
+#variable "provisioning_commands" {
 
-    description = "The list of commands to be executed after the VM hasbeen created"
-    type = list(string)
+#    description = "The list of commands to be executed after the VM hasbeen created"
+#    type = list(string)
     
   
-}
+#}

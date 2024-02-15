@@ -15,23 +15,29 @@
   community.general.modprobe: 
     name: "{{ item }}"
     state: present
-    persistent: present
   with_items:
     - overlay
     - br_netfilter
+
+- name: Configure Persistent loading of moduels
+  copy: 
+    dest: /etc/modules-load.d/k8s.conf
+    content: |
+      overlay
+      br_netfilter
 
 - name: Add IP address of all hosts to all hosts
   blockinfile:
     backup: yes
     path: /etc/hosts
     block: |
-      10.10.1.51 k8s-cos9-master1.sriauronet.lan k8s-cos9-master1
-      10.10.1.52 k8s-cos9-master2.sriauronet.lan k8s-cos9-master2
-      10.10.1.53 k8s-cos9-wn1.sriauronet.lan k8s-cos9-wn1
-      10.10.1.54 k8s-cos9-wn2.sriauronet.lan k8s-cos9-wn2
-      10.10.1.55 k8s-cos9-wn3.sriauronet.lan k8s-cos9-wn3
-      10.10.1.56 k8s-cos9-wn4.sriauronet.lan k8s-cos9-wn4
-      10.10.1.57 k8s-cos9-wn5.sriauronet.lan k8s-cos9-wn5
+      10.10.1.41 k8s-cos9-master1.sriauronet.lan k8s-cos9-master1
+      10.10.1.42 k8s-cos9-master2.sriauronet.lan k8s-cos9-master2
+      10.10.1.43 k8s-cos9-wn1.sriauronet.lan k8s-cos9-wn1
+      10.10.1.44 k8s-cos9-wn2.sriauronet.lan k8s-cos9-wn2
+      10.10.1.45 k8s-cos9-wn3.sriauronet.lan k8s-cos9-wn3
+      10.10.1.46 k8s-cos9-wn4.sriauronet.lan k8s-cos9-wn4
+      10.10.1.47 k8s-cos9-wn5.sriauronet.lan k8s-cos9-wn5
 
 - name: Enable Bridging Add sysctl settings
   ansible.posix.sysctl:
@@ -107,7 +113,7 @@
     disable_excludes: kubernetes
 
 - name: Enable service kubelet persistently
-  ansible.builtin.systemd_service: 
+  systemd: 
     name: "{{ item }}"
     enabled: yes
   with_items: 
