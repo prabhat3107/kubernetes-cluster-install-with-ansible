@@ -9,7 +9,7 @@
     - 30000-32767
 
 - name: join cluster
-  shell: "{{ hostvars['k8s-cos8-master1.sriauronet.lan'].join_command }} >> node_joined.txt"
+  shell: "{{ hostvars['k8s-cos9-master1.sriauronet.lan'].join_command }} >> node_joined.txt"
   args:
     chdir: $HOME
     creates: node_joined.txt
