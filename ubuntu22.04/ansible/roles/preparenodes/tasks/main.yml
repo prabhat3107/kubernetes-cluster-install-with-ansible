@@ -167,7 +167,7 @@
       - kubeadm
       - kubectl
     state: present
-    register: apt_status
+
 
 
 - name: Enable service kubelet persistently
