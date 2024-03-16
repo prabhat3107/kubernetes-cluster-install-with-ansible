@@ -47,6 +47,10 @@
       - wget
       - vim
     state: present
+    register: apt_status
+    untill: apt_status is success
+    delay: 6
+    retries: 10
 
 - name: Iinstale Docker official gpg key
   get_url:
@@ -69,6 +73,10 @@
       - containerd.io
       - docker-compose-plugin
     state: present
+    register: apt_status
+    untill: apt_status is success
+    delay: 6
+    retries: 10
 
 - name: Create daemon json config file for Docker
   copy: 
@@ -165,6 +173,10 @@
       - kubeadm
       - kubectl
     state: present
+    register: apt_status
+    untill: apt_status is success
+    delay: 6
+    retries: 10
 
 - name: Enable service kubelet persistently
   service: 
