@@ -4,7 +4,8 @@
     state: enabled
     immediate: true
     permanent: true
-  with_items: 
+  with_items:
+    - 7946 
     - 10250
     - 30000-32767
 
