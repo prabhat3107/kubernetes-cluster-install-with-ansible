@@ -2,7 +2,7 @@ variable "dc_name" {
 
     description = "Name of the DC"
     type = string
-    default = "SriAuronetHDC1"
+    default = "SriAuroNetDC_01"
 
 }
 
@@ -19,7 +19,7 @@ variable "vcenter_user_name" {
     description = "Name of the Admin accont who can creaet VMs"
     type = string
     sensitive = true
-    default = "administrator@sriauronet.local"
+    default = "administrator@sriauronet.lan"
   
 }
 
@@ -35,7 +35,7 @@ variable "vcneter_user_password" {
 variable "resource_pool_name" {
     description = "Name of the Vsphere resource pool"
     type = string
-    default = "10.10.1.11/Resources"
+    default = "SriAuroNetDC_01_C01/Resources"
   
 }
 
@@ -66,33 +66,33 @@ variable "vsphere_datastore_name" {
 variable "vm_network_name_1" {
     description = "Name of the devfault virtual vsphere network"
     type = string
-    default = "ExternetlNet"
+    default = "VMNet1"
 }
 
 variable "vm_network_name_2" {
     description = "Name of the devfault virtual vsphere network"
     type = string
-    default = "VMNet-G1"
+    default = "VMInternalNet1"
 }
 
 variable "vm_network_name_3" {
     description = "Name of the devfault virtual vsphere network"
     type = string
-    default = "VMNet-G2"
+    default = "VMInternalNet2"
 }
 
 
 variable "vm_network_name_4" {
     description = "Name of the devfault virtual vsphere network"
     type = string
-    default = "VMNet-G3"
+    default = "VMInternalNet3"
 }
 
 variable "vm_template_name" {
 
     description = "Name of the VM template to clone from "
     type = string
-    default = "userver-22.04-lts-template"
+    default = "userver-24.04-lts-template"
   
 }
 
