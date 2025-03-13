@@ -2,14 +2,15 @@
 //this requires bellow parameters to be passed from the calling code.
 
 terraform {
-  required_version = ">= 1.0.0, < 2.0.0"
+  required_version = ">= 1.10"
   required_providers {
     vsphere = {
-        source = "hashicorp/vsphere"
-        version = "~> 2.2.0"
+      source  = "hashicorp/vsphere"
+      version = ">= 2.11.1"
     }
   }
 }
+
 
 locals {
 

@@ -26,12 +26,14 @@ sudo firewall-cmd --add-masquerade --permanent
 
 if [ $HOSTNAME == "k8s-cos9-master1" ] || [ $HOSTNAME == "k8s-cos9-master2" ]; then
     sudo firewall-cmd --permanent --add-port=6443/tcp
+    sudo firewall-cmd --permanent --add-port=7946/tcp
     sudo firewall-cmd --permanent --add-port=2379-2380/tcp
     sudo firewall-cmd --permanent --add-port=10250/tcp
     sudo firewall-cmd --permanent --add-port=10251/tcp
     sudo firewall-cmd --permanent --add-port=10252/tcp
 else
     sudo firewall-cmd --permanent --add-port=10250/tcp
+    sudo firewall-cmd --permanent --add-port=7946/tcp
     sudo firewall-cmd --permanent --add-port=30000-32767/tcp  
 fi
 
