@@ -21,7 +21,7 @@ vm_template_name  = "userver-24.04-lts-template"
 
 
 parent_project_folder_name = "KubernetesLabs"
-project_folder_name        = "k8s-u24.04""
+project_folder_name        = "k8s-u24.04"
 
 vm_user_name     = "prabhat"
 vm_user_password = "Beauty!123"
