@@ -16,11 +16,11 @@ vm_network_name_1 = "VMNet1"
 vm_network_name_2 = "VMInternalNet1"
 vm_network_name_3 = "VMInternalNet2"
 vm_network_name_4 = "VMInternalNet3"
-vm_template_name = "userver-24.04-lts-template"
+vm_template_name = "rhel8-template"
 
 
 parent_project_folder_name="KubernetesLabs"
-project_folder_name="MultiNode-Lab1"
+project_folder_name="MultiNode-RHEL8"
 
 vm_user_name = "prabhat"
 vm_user_password = "Beauty!123"
