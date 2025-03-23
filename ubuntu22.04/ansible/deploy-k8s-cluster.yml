@@ -3,14 +3,14 @@
   roles:
     - role: preparenodes
 
-#- name: Initialize 1st master
-#  hosts: master1
-#
-#  roles:
-#    - role: master1
-#
-#- name: Enrole worker nodes
-#  hosts: workers
-#
-#  roles:
-#    - role: workers
+- name: Initialize 1st master
+  hosts: master1
+
+  roles:
+    - role: master1
+
+- name: Enrole worker nodes
+  hosts: workers
+
+  roles:
+    - role: workers
