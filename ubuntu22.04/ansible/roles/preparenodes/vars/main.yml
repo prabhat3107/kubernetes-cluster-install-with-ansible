@@ -1,5 +1,4 @@
 #define Docker versioin
 
 #define kubernetes version
-- vars:
-    kubernetes_version: "v1.32"
+kubernetes_version: "v1.32"
