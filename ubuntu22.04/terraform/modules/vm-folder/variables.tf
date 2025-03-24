@@ -9,12 +9,6 @@ variable "vsphere_datacenter_id" {
   
 }
 
-variable "parent_project_folder_name" {
-
-    description = "Parent Project folder name"
-    type = string
-  
-}
 
 variable "project_folder_name" {
 
