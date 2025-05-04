@@ -19,7 +19,7 @@ vm_network_name_3 = "VMInternalNet2"
 vm_network_name_4 = "VMInternalNet3"
 vm_template_name  = "cos9-template"
 
-project_folder_name = "Infra_VMs/pki"
+project_folder_name = "Infra_VMs/ipa"
 
 vm_user_name     = "prabhat"
 vm_user_password = "Beauty!123"
@@ -36,21 +36,61 @@ vm_ipv4_gateway_2 = "10.10.1.1"
 
 vm_list = [
   {
-    vm_name      = "dtpki"
-    vm_host_name = "dtpki"
+    vm_name      = "ipa1"
+    vm_host_name = "ipa1"
     vm_num_cpus  = 4
     vm_memory    = 8192
     vm_nic_config = [
       {
-        ipv4_address = "10.10.1.51"
+        ipv4_address = "10.10.1.9"
         ipv4_netmask = 24
       },
       {
-        ipv4_address = "172.16.0.51"
+        ipv4_address = "172.16.0.9"
         ipv4_netmask = 24
       },
       {
-        ipv4_address = "10.1.3.51"
+        ipv4_address = "10.1.3.9"
+        ipv4_netmask = 24
+      },
+    ]
+  },
+  {
+    vm_name      = "ipa2"
+    vm_host_name = "ipa2"
+    vm_num_cpus  = 4
+    vm_memory    = 8192
+    vm_nic_config = [
+      {
+        ipv4_address = "10.10.1.10"
+        ipv4_netmask = 24
+      },
+      {
+        ipv4_address = "172.16.0.10"
+        ipv4_netmask = 24
+      },
+      {
+        ipv4_address = "10.1.3.10"
+        ipv4_netmask = 24
+      },
+    ]
+  },
+  {
+    vm_name      = "cli-01"
+    vm_host_name = "cli-01"
+    vm_num_cpus  = 4
+    vm_memory    = 8192
+    vm_nic_config = [
+      {
+        ipv4_address = "10.10.1.50"
+        ipv4_netmask = 24
+      },
+      {
+        ipv4_address = "172.16.0.50"
+        ipv4_netmask = 24
+      },
+      {
+        ipv4_address = "10.1.3.50"
         ipv4_netmask = 24
       },
     ]

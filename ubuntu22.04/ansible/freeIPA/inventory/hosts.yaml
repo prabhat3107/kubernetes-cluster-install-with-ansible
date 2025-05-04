@@ -1,0 +1,79 @@
+---
+all:
+  children:
+    # define cluster
+    ipacluster:
+      children:
+        ipaserver:
+        ipareplicas:
+        ipaclients:
+      vars:
+        ipaserver_domain: sriauronet.lan
+        ipaserver_realm: SRIAURONET.LAN
+        ipadm_password: "Beauty!123"
+        ipaadmin_password: "Beauty!123"
+    # IPA First Server (CA Renewal)
+    ipaserver:
+      hosts:
+        ipa1.sriauronet.lan:
+          ansible_user: prabhat
+          ansible_become_user: root
+      vars:
+        # KRA
+        ipaserver_setup_kra: true
+        # DNS
+        ipaserver_setup_dns: true
+        ipaserver_forwarders: 1.1.1.1
+        ipaserver_auto_reverse: true
+        ipaserver_allow_zone_overlap: true
+        # this is required for AD trust
+        ipaserver_no_dnssec_validation: true
+        # trust vars
+        ipaserver_setup_adtrust: true
+        # disable 'allow all' HBAC rule
+        ipaserver_no_hbac_allow: true
+        # other vars
+    # IPA Replica Servers
+    ipareplicas:
+      hosts:
+        ipa2.sriauronet.lan:
+          ansible_user: prabhat
+          ansible_become_user: root
+          # CA backup
+          ipareplica_setup_ca: true
+          # KRA backup
+          ipareplica_setup_kra: true
+          # DNS backup
+          ipareplica_setup_dns: true
+          ipareplica_no_dnssec_validation: true
+          ipareplica_no_forwarders: true
+          # Trust backup
+          ipareplica_setup_trust: true
+      vars:
+        # Update DNS address
+        ipasssd_enable_dns_updates: true
+        # Automatically handle DNS nameservers (v1.9.0+)
+        ipaclient_configure_dns_resolver: true
+        ipaclient_dns_servers:
+          # ipa1.sriauronet.lan IPv4 address
+          - 10.10.1.9
+          # ipa1.sriauronet.lan IPv4 address
+          - 10.10.1.10
+    # IPA Client hosts
+    ipaclients:
+      hosts:
+        cli-01.sriauronet.lan:
+          ansible_user: prabhat
+          ansible_become_user: root
+      vars:
+        # Client options
+        ipaclient_mkhomedir: true
+        # Update DNS address
+        ipasssd_enable_dns_updates: true
+        # Automatically handle DNS nameservers (v1.9.0+)
+        ipaclient_configure_dns_resolver: true
+        ipaclient_dns_servers:
+          # ipa1.sriauronet.lan IPv4 address
+          - 10.10.1.9
+          # ipa2.sriauronet.lan IPv4 address
+          - 10.10.1.10
