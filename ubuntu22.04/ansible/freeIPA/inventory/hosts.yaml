@@ -23,7 +23,7 @@ all:
         ipaserver_setup_kra: true
         # DNS
         ipaserver_setup_dns: true
-        ipaserver_forwarders: 192.168.1.1
+        ipaserver_forwarders: 10.10.1.1
         ipaserver_auto_reverse: true
         ipaserver_allow_zone_overlap: true
         # this is required for AD trust
