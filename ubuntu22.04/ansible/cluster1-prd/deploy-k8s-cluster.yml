@@ -15,9 +15,5 @@
   roles:
     - role: workers
 
-- name: Install Metallb and NGINX
-  hosts: master1
-  roles:
-    - role: postinstall
 
 
