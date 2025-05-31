@@ -9,8 +9,15 @@
   roles:
     - role: master1
 
-- name: Enrole worker nodes
+- name: Enroll worker nodes
   hosts: workers
 
   roles:
     - role: workers
+
+- name: Install Metallb and NGINX
+  hosts: master1
+  roles:
+    - role: postinstall
+
+
