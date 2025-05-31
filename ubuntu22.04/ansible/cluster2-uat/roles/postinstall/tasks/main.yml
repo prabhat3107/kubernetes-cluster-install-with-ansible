@@ -4,20 +4,20 @@
     url: https://raw.githubusercontent.com/metallb/metallb/v0.14.9/config/manifests/metallb-native.yaml
     dest: ../metallb/metallb-native.yaml
     mode: 0664
-    register: menifest_download
+  register: menifest_download
 
 - name: Deploy metallb
   kubernetes.core.k8s:
     src: ../metallb/metallb-native.yaml
     state: present
     when:  menifest_download is succeeded
-    register: metallb_deploy
+  register: metallb_deploy
 
 - name: metallb L2 range allocation
   kubernetes.core.k8s:
     src: ../metallb/L2-range-allocation.yaml
     state: present
-    when: metallb_deploy is succeeded
+  when: metallb_deploy is succeeded
 
 
 - name: Download ingress-nginx
@@ -25,10 +25,10 @@
     url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.1/deploy/static/provider/cloud/deploy.yaml
     dest: ../ingress-nginx/ingress-nginx.yaml
     mode: 0664
-    register: ingressnginx_download
+  register: ingressnginx_download
 
 - name: Deploy ingress-nginx
   kubernetes.core.k8s:
     src: ../ingress-nginx/ingress-nginx.yaml
     state: present
-    when: ingressnginx_download is succeeded
+  when: ingressnginx_download is succeeded
