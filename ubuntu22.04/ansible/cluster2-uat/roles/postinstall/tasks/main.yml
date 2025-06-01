@@ -1,16 +1,7 @@
 
-- name: Download metallb menifest
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/metallb/metallb/v0.14.9/config/manifests/metallb-native.yaml
-    dest: ../metallb/metallb-native.yaml
-    mode: 0664
-  register: menifest_download
-
-- name: Deploy metallb
-  kubernetes.core.k8s:
-    src: ../metallb/metallb-native.yaml
-    state: present
-    when:  menifest_download is succeeded
+- name: Deploy metallb menifest
+  ansible.builtin.shell:
+    cmd: kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.9/config/manifests/metallb-native.yaml
   register: metallb_deploy
 
 - name: metallb L2 range allocation
@@ -19,16 +10,7 @@
     state: present
   when: metallb_deploy is succeeded
 
-
 - name: Download ingress-nginx
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.1/deploy/static/provider/cloud/deploy.yaml
-    dest: ../ingress-nginx/ingress-nginx.yaml
-    mode: 0664
-  register: ingressnginx_download
+  ansible.builtin.shell:
+    cmd: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.1/deploy/static/provider/cloud/deploy.yaml
 
-- name: Deploy ingress-nginx
-  kubernetes.core.k8s:
-    src: ../ingress-nginx/ingress-nginx.yaml
-    state: present
-  when: ingressnginx_download is succeeded
