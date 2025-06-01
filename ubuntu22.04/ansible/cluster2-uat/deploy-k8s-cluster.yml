@@ -1,19 +1,19 @@
-- name: Prepare servers
-  hosts: all
-  roles:
-    - role: preparenodes
-
-- name: Initialize 1st master
-  hosts: master1
-
-  roles:
-    - role: master1
-
-- name: Enrole worker nodes
-  hosts: workers
-
-  roles:
-    - role: workers
+#- name: Prepare servers
+#  hosts: all
+#  roles:
+#    - role: preparenodes
+#
+#- name: Initialize 1st master
+#  hosts: master1
+#
+#  roles:
+#    - role: master1
+#
+#- name: Enrole worker nodes
+#  hosts: workers
+#
+#  roles:
+#    - role: workers
 
 - name: Install Metallb and NGINX
   hosts: master1
