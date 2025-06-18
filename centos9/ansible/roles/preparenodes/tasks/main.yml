@@ -26,10 +26,10 @@
       overlay
       br_netfilter
 
-- name: Add IP address of all hosts to all hosts
+- name: Add IP address of all hosts.yaml to all hosts.yaml
   blockinfile:
     backup: yes
-    path: /etc/hosts
+    path: /etc/hosts.yaml
     block: |
       10.10.1.41 k8s-cos9-master1.sriauronet.lan k8s-cos9-master1
       10.10.1.42 k8s-cos9-master2.sriauronet.lan k8s-cos9-master2
